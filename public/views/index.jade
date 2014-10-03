@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  if(user)
+    ul
+      #right
+        li Bienvenido #{user.name}
+        li
+          img(src="#{user.photo}")
+        li
+          a(href='logout') Salir
+  else
+    #content
+      h3 Inicia Sesion
+      li
+        a(href='auth/github' class="boton git") Entrar con GitHub
+      li
+        a(href='auth/facebook' class="boton face") Entrar con Facebook
