@@ -11,8 +11,24 @@ block content
           a(href='logout') Salir
   else
     #content
-      h3 Inicia Sesion
-      li
-        a(href='auth/github' class="boton git") Entrar con GitHub
+      h3#titulo Login
+      form(method="post" action="/login")
+        p(class="individual")
+          input(type="text" name="user" class="textbox arriba" placeholder="Usuario")
+        p(class="individual")
+          input(type="password" name="pwd" class="textbox abajo" placeholder="Contraseña" )
+        p
+          input(type="submit" class=" boton local" value="Iniciar Sesion") 
+          
       li
         a(href='auth/facebook' class="boton face") Entrar con Facebook
+      li
+        a(href='auth/github' class="boton git") Entrar con GitHub
+
+    form(method="post" action="/usuarios")
+        p(class="individual")
+          input(type="text" name="user" class="textbox arriba" placeholder="Usuario")
+        p(class="individual")
+          input(type="password" name="pwd" class="textbox abajo" placeholder="Contraseña" )
+        p
+          input(type="submit" class=" boton local" value="Nuevo") 

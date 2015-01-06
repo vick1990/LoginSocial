@@ -1,5 +1,4 @@
 var FacebookStrategy = require('passport-facebook').Strategy,
-	//	config = require('../config/config'),
 	mongoose = require('mongoose'),
 	db = mongoose.model('User');
 
@@ -22,17 +21,23 @@ var facebookConections = function(passport,config) {
 			provider_id: profile.id
 		}, function(err, user) {
 			if (err) throw err;
-			if (!err && user !== null) return done(null, user);
+			if (!err && user !== null) {
+				//debugger;
+				//user = JSON.parse(profile._raw);
+				return done(null, user);
+			}
 
 			var User = new db({
 				name: profile.displayName,
 				provider_id: profile.id,
-				provider: profile.provider
-				//photo:profile.photos[0].value
-			});
+				provider: profile.provider,
+				email:profile.emails[0].value,
+				photo:"https://graph.facebook.com/" + profile.id + "/picture" + "?width=200&height=200" + "&access_token=" + accessToken
+			});	
 
 			User.save(function(err, doc) {
 				if (err) throw err;
+				//user = JSON.stringify(profile._raw);
 				done(null, user);
 			});
 		});
