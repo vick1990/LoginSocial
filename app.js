@@ -62,7 +62,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
 	scope: ['email'],
 	profileFields: ['photos', 'birthday'],
 }), function(req, res) {
-	debugger;
+	//Error
 });
 
 app.get('/auth/github', passport.authenticate('github'));
@@ -83,7 +83,7 @@ app.get('/auth/github/callback', passport.authenticate('github', {
 		failureRedirect: '/login'
 	}),
 	function(req, res) {
-		debugger;
+		
 		req.session.usuario = req.user.name;
 		console.log(req.session.passport.user);
 		res.redirect('/');
@@ -102,7 +102,6 @@ app.listen(3000, function() {
 	console.log('Servidor Corriendo');
 });
 app.get('/activo', function(req, res) {
-	debugger;
 	res.end('Usuario activo : ' + req.session.usuario);
 });
 
